@@ -1,0 +1,20 @@
+{
+  "app": "python3 cdk/app.py",
+  "context": {
+    "main_resources_name": "multi-agent-collab-demo",
+    "tags": {
+      "Owner": "Santiago Garcia Arango",
+      "Source": "https://github.com/san99tiago/aws-multi-agent-collaboration-demo",
+      "Usage": "Multi agent collaboration demo on top of Bedrock and AWS"
+    },
+    "app_config": {
+      "dev": {
+        "deployment_environment": "dev",
+        "log_level": "DEBUG",
+        "agents_data_table_name": "multi-agent-collab-data-dev",
+        "comment": "Update the <enable_rag> to <true> in case that support for RAG with PDFs is required. Warning: could be expensive.",
+        "enable_rag": false
+      }
+    }
+  }
+}
