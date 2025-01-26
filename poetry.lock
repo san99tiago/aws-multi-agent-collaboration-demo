@@ -80,40 +80,40 @@ typeguard = ">=2.13.3,<5.0.0"
 
 [[package]]
 name = "aws-cdk-cloud-assembly-schema"
-version = "38.0.1"
+version = "39.2.5"
 description = "Cloud Assembly Schema"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws_cdk.cloud_assembly_schema-38.0.1-py3-none-any.whl", hash = "sha256:92613b46213b460681e9424f09b77f06ff059eb1c773092540364ef82fcecf55"},
-    {file = "aws_cdk_cloud_assembly_schema-38.0.1.tar.gz", hash = "sha256:7c75861adc41f7b959910d4b3b191ea242815402e599dbfa31934892838ae25e"},
+    {file = "aws_cdk.cloud_assembly_schema-39.2.5-py3-none-any.whl", hash = "sha256:2d8165cb1839e2bf008cec94c78771d3f50401455f3470c3a1d0e188e1c8b0ce"},
+    {file = "aws_cdk_cloud_assembly_schema-39.2.5.tar.gz", hash = "sha256:996ecc07a11964cec7962332f625bea6ed7d56c9e6092eee43e2e93d73bc00e0"},
 ]
 
 [package.dependencies]
-jsii = ">=1.103.1,<2.0.0"
+jsii = ">=1.106.0,<2.0.0"
 publication = ">=0.0.3"
-typeguard = ">=2.13.3,<5.0.0"
+typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.162.1"
+version = "2.177.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws_cdk_lib-2.162.1-py3-none-any.whl", hash = "sha256:696cf76ebe8ee6cb4af14e5d621cf551659e27c5c5c0e6c0146e478eada6195b"},
-    {file = "aws_cdk_lib-2.162.1.tar.gz", hash = "sha256:5c8157f144acecb40fa190bd49feb669f5be5d1bb2cf7bf7b0cdc3daa19615d9"},
+    {file = "aws_cdk_lib-2.177.0-py3-none-any.whl", hash = "sha256:acdf06aaf52367a64b4bf88381e8272cb7b5961c242020ace822c79749e53cac"},
+    {file = "aws_cdk_lib-2.177.0.tar.gz", hash = "sha256:5e51c48da31555beb38243bb2882e98ee9fe1796466ba9f8d3088701b47965e5"},
 ]
 
 [package.dependencies]
-"aws-cdk.asset-awscli-v1" = ">=2.2.202,<3.0.0"
-"aws-cdk.asset-kubectl-v20" = ">=2.1.2,<3.0.0"
+"aws-cdk.asset-awscli-v1" = ">=2.2.208,<3.0.0"
+"aws-cdk.asset-kubectl-v20" = ">=2.1.3,<3.0.0"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.0,<3.0.0"
-"aws-cdk.cloud-assembly-schema" = ">=38.0.0,<39.0.0"
+"aws-cdk.cloud-assembly-schema" = ">=39.2.0,<40.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.103.1,<2.0.0"
+jsii = ">=1.106.0,<2.0.0"
 publication = ">=0.0.3"
-typeguard = ">=2.13.3,<5.0.0"
+typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "aws-lambda-powertools"
@@ -1351,4 +1351,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "90adef708e9c9967e03018d7b398ceca7a83d560d502f5551a94d66738291b16"
+content-hash = "c76002c78374bbedfe542760cc39dd3196a86a49954bd3c4bc25ee0ecd94c7b4"

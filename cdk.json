@@ -1,5 +1,5 @@
 {
-  "app": "python3 cdk/app.py",
+  "app": "make clean && make install && python cdk/app.py",
   "context": {
     "main_resources_name": "multi-agent-collab-demo",
     "tags": {
@@ -12,8 +12,9 @@
         "deployment_environment": "dev",
         "log_level": "DEBUG",
         "agents_data_table_name": "multi-agent-collab-data-dev",
+        "agents_version": "v0",
         "comment": "Update the <enable_rag> to <true> in case that support for RAG with PDFs is required. Warning: could be expensive.",
-        "enable_rag": false
+        "enable_rag": true
       }
     }
   }
