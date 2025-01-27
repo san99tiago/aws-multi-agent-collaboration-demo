@@ -21,9 +21,11 @@ This DEMO enables the collaboration of agents via the [multi-agent-collaboration
 
 ## DEMO
 
-<video src="assets/2025_01_29_MultiAgent_DEMO_VIDEO.mov" controls width=90%> <br>
+<video src="assets/2025_01_29_MultiAgent_DEMO_VIDEO.mp4" controls width=90%> <br>
 
-- Source video: [Video File](assets/2025_01_29_MultiAgent_DEMO_VIDEO.mov)
+<img src="assets/2025_01_29_MultiAgent_Demo_A.png" width=90%> <br>
+
+- Source video: [Video File](assets/2025_01_29_MultiAgent_DEMO_VIDEO.mp4)
 
 ## Manual Steps
 
