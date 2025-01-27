@@ -6,16 +6,16 @@ import os, boto3
 items = [
     # LOAD DEMO USER PROFILES...
     {
-        "PK": "USER#user1",
+        "PK": "USER#santi123",
         "SK": "PROFILE#",
-        "first_name": "Santi",
+        "first_name": "Santi123",
         "last_name": "Garci",
-        "email": "santi@example.com",
+        "email": "santi123@example.com",
         "phone_number": "+1234567890",
         "address": "123 Main St, Anytown, COL",
     },
     {
-        "PK": "USER#user2",
+        "PK": "USER#dani456",
         "SK": "PROFILE#",
         "first_name": "Moni",
         "last_name": "Hill",
@@ -25,7 +25,7 @@ items = [
     },
     # LOAD DEMO USER PRODUCTS...
     {
-        "PK": "USER#user1",
+        "PK": "USER#santi123",
         "SK": "PRODUCT#01",
         "product_name": "Credit Card",
         "last_digits": "1111",
@@ -33,7 +33,7 @@ items = [
         "status": "ACTIVE",
     },
     {
-        "PK": "USER#user1",
+        "PK": "USER#santi123",
         "SK": "PRODUCT#02",
         "product_name": "Credit Card",
         "last_digits": "2222",
@@ -41,7 +41,7 @@ items = [
         "status": "ACTIVE",
     },
     {
-        "PK": "USER#user1",
+        "PK": "USER#santi123",
         "SK": "PRODUCT#03",
         "product_name": "Bank Account",
         "last_digits": "3333",
@@ -49,7 +49,7 @@ items = [
         "status": "ACTIVE",
     },
     {
-        "PK": "USER#user1",
+        "PK": "USER#santi123",
         "SK": "PRODUCT#04",
         "product_name": "Bank Account",
         "last_digits": "4444",
@@ -57,24 +57,26 @@ items = [
         "status": "ACTIVE",
     },
     {
-        "PK": "USER#user2",
+        "PK": "USER#dani456",
         "SK": "PRODUCT#01",
-        "product_name": "Credit Card",
-        "last_digits": "3333",
-        "details": "Master Card",
+        "product_name": "LOW-RISK-FUND",
+        "last_digits": "7777",
+        "details": "Low risk collective fund",
+        "status": "ACTIVE",
     },
     {
-        "PK": "USER#user2",
+        "PK": "USER#dani456",
         "SK": "PRODUCT#02",
-        "product_name": "Credit Card",
-        "last_digits": "4444",
-        "details": "Visa Card",
+        "product_name": "CDT",
+        "last_digits": "8888",
+        "details": "Low risk virtual investment",
+        "status": "ACTIVE",
     },
     {
-        "PK": "USER#user2",
+        "PK": "USER#dani456",
         "SK": "PRODUCT#03",
         "product_name": "Bank Account",
-        "last_digits": "3333",
+        "last_digits": "9999",
         "details": "Savings Account",
         "status": "ACTIVE",
     },

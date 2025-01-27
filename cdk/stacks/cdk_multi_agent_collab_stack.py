@@ -492,7 +492,7 @@ class MultiAgentCollabStack(Stack):
             # foundation_model="anthropic.claude-3-haiku-20240307-v1:0",
             # foundation_model="anthropic.claude-3-sonnet-20240229-v1:0",
             # foundation_model="anthropic.claude-3-5-sonnet-20240620-v1:0",
-            instruction="You are a specialized agent in giving back information about User Products for the Bank. In case that products operations are requested, they must provide the <user_id> parameter, so that you can obtain all the bank products of the user. Always answer in the same language as the user asked. Never give back additional information than the one requested (only the corresponding user products).",
+            instruction="You are a specialized agent in giving back information about User Products for the Bank. In case that products operations are requested, they must provide the <user_id> parameter, so that you can obtain all the bank products of the user. Never give back additional information than the one requested (only the corresponding user products). Always answer in the SAME language as the input.",
             auto_prepare=True,
             action_groups=[
                 aws_bedrock.CfnAgent.AgentActionGroupProperty(
@@ -531,7 +531,7 @@ class MultiAgentCollabStack(Stack):
             foundation_model="amazon.nova-lite-v1:0",
             # foundation_model="amazon.nova-pro-v1:0",
             # foundation_model="anthropic.claude-3-5-sonnet-20240620-v1:0",
-            instruction="You are a specialized financial assistant agent that will be able to get the current user products, and then with the help of the <FetchMarketInsights> and the knowledge base, obtain the best advise for the users. If the FetchMarketInsights details are needed, you must ask for the RISK_PROFILE, and let them choose between [CONSERVATIVE, MODERATE, RISKY], if they provide similar words, always pass them as the ones provided in list in CAPITAL case as the <risk_level> parameter. The goal is to always recommend products or actions aligned with the <user_id> and <risk_level> details, so that based on the <BANK INVESTMENT PRODUCTS> document, you can provide the best financial product for the user.",
+            instruction="You are a specialized financial assistant agent that will be able to get the current user products, and then with the help of the <FetchMarketInsights> and the knowledge base, obtain the best advise for the users. If the FetchMarketInsights details are needed, you must ask for the RISK_PROFILE, and let them choose between [CONSERVATIVE, MODERATE, RISKY], if they provide similar words, always pass them as the ones provided in list in CAPITAL case as the <risk_level> parameter. The goal is to always recommend products or actions aligned with the <user_id> and <risk_level> details, so that based on the <BANK INVESTMENT PRODUCTS> document, you can provide the best financial product for the user. Always answer in the SAME language as the input.",
             auto_prepare=True,
             action_groups=[
                 aws_bedrock.CfnAgent.AgentActionGroupProperty(
@@ -572,46 +572,72 @@ class MultiAgentCollabStack(Stack):
             ),
         )
 
-        self.bedrock_agent_supervisor = aws_bedrock.CfnAgent(
-            self,
-            "BedrockAgentSupervisorV1",
-            agent_name=f"{self.main_resources_name}-agent-supervisor-{self.agents_version}",
-            agent_resource_role_arn=bedrock_agent_role.role_arn,
-            description="You are a specialized SUPERVISOR Agent that orchestrates the user-products-agent and the financial-assistant-agent to help the customers.",
-            foundation_model="amazon.nova-lite-v1:0",
-            # foundation_model="amazon.nova-pro-v1:0",
-            # foundation_model="anthropic.claude-3-5-sonnet-20240620-v1:0",
-            instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the user-products-agent and the financial-assistant-agent to help the customers. Make sure that the user provides the <user_id> when asking about financial products. Always answer in the SAME language as the input.",
-            auto_prepare=True,
-        )
+        # # TODO: Add the supervisor agent via CDK when multi-agent-collab is ready
+        # self.bedrock_agent_supervisor = aws_bedrock.CfnAgent(
+        #     self,
+        #     "BedrockAgentSupervisorV1",
+        #     agent_name=f"{self.main_resources_name}-agent-supervisor-{self.agents_version}",
+        #     agent_resource_role_arn=bedrock_agent_role.role_arn,
+        #     description="You are a specialized SUPERVISOR Agent that orchestrates the user-products-agent and the financial-assistant-agent to help the customers.",
+        #     foundation_model="amazon.nova-lite-v1:0",
+        #     # foundation_model="amazon.nova-pro-v1:0",
+        #     # foundation_model="anthropic.claude-3-5-sonnet-20240620-v1:0",
+        #     # instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the user-products-agent and the financial-assistant-agent to help the customers. Make sure that the user provides the <user_id> when asking about financial products. Always answer in the SAME language as the input.",
+        #     instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the user-products-agent and the financial-assistant-agent to help the customers. Always answer in the SAME language as the input.",
+        #     instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the user-products-agent (for questions related to existing user products) and the financial-assistant-agent (to help customers to get advise on their best products based on their risk profile). Always answer in the SAME language as the input.",
+        #     instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the user-products-agent (for questions related to existing user products) and the financial-assistant-agent (to help customers to get advise on their best products based on their risk profile). If a customer asks to DETECT/INFER the risk profile, use the "user-products-agent" and choose a category, then proceed to use the "financial-assistant-agent" to share the advised products. Always answer in the SAME language as the input. - When a tool fetches results, always format and include them in your final response within <answer> </answer> tags. Use a clear and structured format for readability.",
+        #     instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the user-products-agent (for questions related to existing user products) and the financial-assistant-agent (to help customers to get advise on their best products based on their risk profile). If a customer asks for recommded products, FIRST run the "user-products-agent" infer his risk_profile, SECOND run the "financial-assistant-agent" to find the recommended product. Always answer in the SAME language as the input. - When a tool fetches results, always format and include them in your final response within <answer> </answer> tags. Use a clear and structured format for readability.",
+        #     instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the "user-products-agent" (for questions related to existing user products). When a customer asks for recommded products, FIRST run the "user-products-agent" and from the returned products, INFER his risk_profile, always make a choice from [CONSERVATIVE, MODERATE, RISKY], SECOND run the "financial-assistant-agent" to find the recommended product based on the risk_profile. Always answer in the SAME language as the input. - When a tool fetches results, always format and include them in your final response within <answer> </answer> tags. Use a clear and structured format for readability.",
+        #     instruction="You are a specialized SUPERVISOR agent that is able to collaborate with the "user-products-agent" (for questions related to existing user products). When a customer asks for recommded products, FIRST run the "user-products-agent" and from the returned products, INFER his risk_profile, always make a choice from [CONSERVATIVE, MODERATE, RISKY], SECOND run the "financial-assistant-agent" to find the recommended product based on the risk_profile. - When a tool fetches results, always format and include them in your final response within <answer> </answer> tags. Use a clear and structured format for readability. Always answer in the SAME language as the input.",
+        #     auto_prepare=True,
+        # )
 
-        # Create an alias for the supervisor bedrock agent
-        cfn_agent_alias = aws_bedrock.CfnAgentAlias(
+        # Create aliases for the bedrock agents (required for multi-agent-collab setup)
+        cfn_agent_alias_1 = aws_bedrock.CfnAgentAlias(
             self,
-            "MyCfnAgentAlias",
-            agent_alias_name="bedrock-agent-alias",
-            agent_id=self.bedrock_agent_supervisor.ref,
-            description="bedrock agent alias to simplify agent invocation",
+            "BedrockAgentAlias1FinancialProducts",
+            agent_alias_name=f"bedrock-agent-alias-financial-products-{self.agents_version}",
+            agent_id=self.bedrock_agent_financial_products.ref,
+            description="bedrock agent alias 1 (financial-products)",
         )
-        cfn_agent_alias.add_dependency(self.bedrock_agent_supervisor)
+        cfn_agent_alias_1.add_dependency(self.bedrock_agent_financial_products)
 
-        # This string will be as <AGENT_ID>|<AGENT_ALIAS_ID>
-        agent_alias_string = cfn_agent_alias.ref
+        cfn_agent_alias_2 = aws_bedrock.CfnAgentAlias(
+            self,
+            "BedrockAgentAlias2FinancialAssistant",
+            agent_alias_name=f"bedrock-agent-alias-financial-assistant-{self.agents_version}",
+            agent_id=self.bedrock_agent_financial_assistant.ref,
+            description="bedrock agent alias 2 (financial-assistant)",
+        )
+        cfn_agent_alias_2.add_dependency(self.bedrock_agent_financial_assistant)
 
-        # Create SSM Parameters for the agent alias to use in the Lambda functions
-        # Note: can not be added as Env-Vars due to circular dependency. Thus, SSM Params (decouple)
-        aws_ssm.StringParameter(
-            self,
-            "SSMAgentAlias",
-            parameter_name=f"/{self.deployment_environment}/aws-wpp/bedrock-agent-alias-id-full-string",
-            string_value=agent_alias_string,
-        )
-        aws_ssm.StringParameter(
-            self,
-            "SSMAgentId",
-            parameter_name=f"/{self.deployment_environment}/aws-wpp/bedrock-agent-id",
-            string_value=self.bedrock_agent_supervisor.ref,
-        )
+        # # NOTE: commented until used via SDK in later projects
+        # cfn_agent_alias_supervisor = aws_bedrock.CfnAgentAlias(
+        #     self,
+        #     "BedrockAgentAliasSupervisor",
+        #     agent_alias_name="bedrock-agent-alias-supervisor",
+        #     agent_id=self.bedrock_agent_supervisor.ref,
+        #     description="bedrock agent alias (supervisor)",
+        # )
+        # cfn_agent_alias_supervisor.add_dependency(self.bedrock_agent_supervisor)
+
+        # # This string will be as <AGENT_ID>|<AGENT_ALIAS_ID>
+        # agent_alias_string = cfn_agent_alias_supervisor.ref
+
+        # # Create SSM Parameters for the agent alias to use in the Lambda functions
+        # # Note: can not be added as Env-Vars due to circular dependency. Thus, SSM Params (decouple)
+        # aws_ssm.StringParameter(
+        #     self,
+        #     "SSMAgentAlias",
+        #     parameter_name=f"/{self.deployment_environment}/aws-wpp/bedrock-agent-alias-id-full-string",
+        #     string_value=agent_alias_string,
+        # )
+        # aws_ssm.StringParameter(
+        #     self,
+        #     "SSMAgentId",
+        #     parameter_name=f"/{self.deployment_environment}/aws-wpp/bedrock-agent-id",
+        #     string_value=self.bedrock_agent_supervisor.ref,
+        # )
 
     def generate_cloudformation_outputs(self) -> None:
         """

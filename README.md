@@ -17,7 +17,19 @@ This DEMO enables the collaboration of agents via the [multi-agent-collaboration
 
 ## Architecture :memo:
 
-TBD: Add architecture.
+<img src="assets/2025_01_29_multi_agent_collaboration_demo.png" width=90%> <br>
+
+## DEMO
+
+<video src="assets/2025_01_29_MultiAgent_DEMO_VIDEO.mov" controls width=90%> <br>
+
+- Source video: [Video File](assets/2025_01_29_MultiAgent_DEMO_VIDEO.mov)
+
+## Manual Steps
+
+As Bedrock Agents are newly released, not ALL the necessary AWS-SKDs and CDK/CloudFormation constructs/resources are available. Thus, I created the "manual guide" for the last steps needed to run this demo (just a couple steps for now).
+
+- [MANUAL STEPS](./MANUAL_STEPS.md)
 
 ## Shoutouts 🙌
 
