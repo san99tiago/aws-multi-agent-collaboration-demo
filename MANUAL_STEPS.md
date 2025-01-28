@@ -32,7 +32,8 @@ These manual steps are required as these multi-agent collaboration features don'
 
 4. Add sample data for the demo:
    - Locally execute the python files as follow:
-     - `
+     - `python tests/to_organize/load_ddb_with_market_insights.py`
+     - `python tests/to_organize/load_ddb_with_users_data.py`
 
 TESTING:
 
